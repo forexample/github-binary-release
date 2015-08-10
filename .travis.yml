@@ -1,7 +1,7 @@
 script:
     - ./run-test.sh
     - export FILE_TO_UPLOAD=$(ls *.txt)
-    - echo "Deploying to GitHub releases: $FILE_TO_UPLOAD"
+    - ./print-messages.sh
 
 deploy:
     provider: releases
