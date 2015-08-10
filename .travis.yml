@@ -2,6 +2,7 @@ language:
     - objective-c
 
 install:
+  - brew install python3
   # install cmake toolchains and script
   - POLLY_VERSION="0.7.2"
   - wget "https://github.com/ruslo/polly/archive/v${POLLY_VERSION}.tar.gz"
