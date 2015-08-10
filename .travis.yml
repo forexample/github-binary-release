@@ -3,14 +3,14 @@ script:
 
 before_deploy:
     - export FILE_TO_UPLOAD=$(ls *.txt)
-    - echo "Deploying to GitHub releases: $FILE_TO_UPLOAD"
+    - echo "Deploying to GitHub releases: ${FILE_TO_UPLOAD}"
 
 deploy:
     provider: releases
     api_key:
         - secure: "kmV8Pzv+2otsNk8R9CtTU/qE4lgr4Jhul6j6vrueTlUhkA2K2jtMd93hDEA23h/7bsULl1p2yE6WhLiFl8zMC7KrBEcqCycHybmYQ/WezRg3dKXAQFpXs8k23K2QJLr+r6DvOf4OLLOnYhW2Z0qDvBOHVk4tFG9jV/kXrCLK8HRjW09hLNz5Cidrtu9pXHxkFh6+UP1v8cpmuC1BsMoH/9eN6vPUKTeKY/GD3jwJuUTWljmiQluWuvNdoGNaer1IZE7GI7DZ/NL+48kGKkO4Qf7Tmm0XttaoPM8eyJl9fYkKpxkghI7MJOQDnLojNr94XNHd0QpjfKypNRv/qkxiiI/ZtUZfkDIif2o4DupBS+pG8RdKIvT6mGtrn7jGJlbgNaEiierJVztLZ2Ice0I3Jp9gUtkLE/ebpix/fZcRRJIAHJg9YArwK6QMU7RReito5kW5jAXm3Z9KdQhM2ffY9xczT/QA6V703hfcnq6zwiYKN0xh5LAh4OTerH6iTWTKZP+PubL3areo9TaAsUDu1T3wO77yXiVy2cZX78ooIF1GAwiNGGoYf24jb7k8BzdJUQLXSKBmgwPCAsxqbBKT7yarJCTivMJ8hTvlX7ZHrss6ILdi8oV0hU0OzZZ5Jv0pVTmDd93i3sUP6ma1Ddabf6sw+BLfNOR05IGH0KPDU3A="
     file_glob: true
-    file: "$FILE_TO_UPLOAD"
+    file: "${FILE_TO_UPLOAD}"
     skip_cleanup: true
     on:
         tags: true
