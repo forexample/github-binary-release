@@ -3,10 +3,12 @@ language:
 
 install:
   # install cmake toolchains and script
-  - POLLY_VERSION="0.7.1"
+  - POLLY_VERSION="0.7.2"
   - wget "https://github.com/ruslo/polly/archive/v${POLLY_VERSION}.tar.gz"
   - tar xf "v${POLLY_VERSION}.tar.gz"
   - export PATH="`pwd`/polly-${POLLY_VERSION}/bin:${PATH}"
+  - cmake --version
+  - python3 --version
 
 script:
   - build.py --verbose --pack TGZ --config Release
