@@ -1,8 +1,16 @@
+install:
+  - sudo apt-get install cmake
+  # install cmake toolchains and script
+  - POLLY_VERSION="0.7.1"
+  - wget "https://github.com/ruslo/polly/archive/v${POLLY_VERSION}.tar.gz"
+  - tar xf "v${POLLY_VERSION}.tar.gz"
+  - export PATH="`pwd`/polly-${POLLY_VERSION}/bin:${PATH}"
+
 script:
-  - ./run-test.sh
+  - build.py --verbose --pack TGZ --config Release
 
 before_deploy:
-  - export FILE_TO_UPLOAD=$(ls *.txt)
+  - export FILE_TO_UPLOAD=$(ls _builds/default-Release/Foo-*.tar.gz)
 
 deploy:
   provider: releases
