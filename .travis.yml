@@ -1,5 +1,12 @@
 # Linux (https://github.com/travis-ci-tester/toolchain-table)
 
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - cmake
+
 language:
     - python
 
@@ -7,7 +14,6 @@ python:
     - "3.3"
 
 install:
-  - sudo apt-get install cmake
   # install cmake toolchains and script
   - POLLY_VERSION="0.7.1"
   - wget "https://github.com/ruslo/polly/archive/v${POLLY_VERSION}.tar.gz"
