@@ -1,3 +1,6 @@
+language:
+    - objective-c
+
 script:
     - ./run-test.sh
     - export FILE_TO_UPLOAD=$(ls *.txt)
