@@ -1,2 +1,2 @@
 script:
-    - echo "Travis tag: ${TRAVIS_TAG}"
+    - ./run-test.sh
