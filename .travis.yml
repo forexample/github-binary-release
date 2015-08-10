@@ -1,2 +1,2 @@
 script:
-  - echo "Hello"
+  - echo "Travis tag: ${TRAVIS_TAG}"
