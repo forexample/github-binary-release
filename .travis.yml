@@ -1,7 +1,7 @@
 script:
     - ./run-test.sh
     - export FILE_TO_UPLOAD=$(ls *.txt)
-    - ./print-messages.sh
+    - ./print-message.sh
 
 deploy:
     provider: releases
