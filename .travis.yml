@@ -1,7 +1,5 @@
 script:
     - ./run-test.sh
-
-before_deploy:
     - export FILE_TO_UPLOAD=$(ls *.txt)
     - echo "Deploying to GitHub releases: ${FILE_TO_UPLOAD}"
 
