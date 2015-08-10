@@ -1,17 +1,10 @@
-# Linux (https://github.com/travis-ci-tester/toolchain-table)
-
 sudo: false
 
 addons:
   apt:
     packages:
       - cmake
-
-language:
-    - python
-
-python:
-    - "3.3"
+      - python3
 
 install:
   # install cmake toolchains and script
