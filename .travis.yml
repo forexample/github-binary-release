@@ -1,5 +1,5 @@
 script:
-    - ./run-test.sh
+  - ./run-test.sh
 
 deploy:
   provider: releases

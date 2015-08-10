@@ -2,4 +2,4 @@
 
 set -x
 
-echo "Travis tag: ${TRAVIS_TAG}"
+echo "Travis tag: ${TRAVIS_TAG}" > result.txt
