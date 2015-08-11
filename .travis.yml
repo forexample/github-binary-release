@@ -15,8 +15,8 @@ env:
   - TOOLCHAIN=libcxx CONFIG=Release
   - TOOLCHAIN=clang-libstdcxx CONFIG=Debug
   - TOOLCHAIN=clang-libstdcxx CONFIG=Release
-  - TOOLCHAIN=gcc CONFIG=Debug
-  - TOOLCHAIN=gcc CONFIG=Release
+  - TOOLCHAIN=gcc-cxx98 CONFIG=Debug
+  - TOOLCHAIN=gcc-cxx98 CONFIG=Release
 
 matrix:
   exclude:
@@ -28,7 +28,7 @@ matrix:
 install:
   - ./install-deps.sh
   # install cmake toolchains and script
-  - POLLY_VERSION="0.7.2"
+  - POLLY_VERSION="0.7.3"
   - wget "https://github.com/ruslo/polly/archive/v${POLLY_VERSION}.tar.gz"
   - tar xf "v${POLLY_VERSION}.tar.gz"
   - export PATH="`pwd`/polly-${POLLY_VERSION}/bin:${PATH}"
