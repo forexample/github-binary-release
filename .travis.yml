@@ -2,6 +2,8 @@ os:
   - linux
   - osx
 
+sudo: required
+
 install:
   - ./install-deps.sh
   # install cmake toolchains and script
