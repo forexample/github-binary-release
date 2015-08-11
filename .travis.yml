@@ -10,6 +10,10 @@ addons:
       - cmake
       - python3
 
+env:
+  - CONFIG=Debug
+  - CONFIG=Release
+
 install:
   - ./install-deps.sh
   # install cmake toolchains and script
@@ -21,7 +25,7 @@ install:
   - python3 --version
 
 script:
-  - build.py --verbose --pack TGZ --config Release
+  - build.py --verbose --pack TGZ --config ${CONFIG}
 
 before_deploy:
   - export FILE_TO_UPLOAD=$(ls _builds/default-Release/Foo-*.tar.gz)
