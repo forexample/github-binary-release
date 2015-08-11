@@ -20,13 +20,13 @@ Create GitHub token with name like "Token for Travis CI deployment" and select `
   secure: "...."
 ```
 
-#### Update Travis config
+#### Add token
 
 Copy `secure: "..."` string to `.travis.yml`:
 
 ```
 before_deploy:
-  - export FILE_TO_UPLOAD=$(ls _builds/default-Release/Foo-*.tar.gz)
+  - export FILE_TO_UPLOAD=$(ls _builds/*/Foo-*.tar.gz)
 
 deploy:
   provider: releases
@@ -42,18 +42,19 @@ deploy:
 * [Travis GitHub deploy](http://docs.travis-ci.com/user/deployment/releases/)
 * [Deploy with wildcards](http://stackoverflow.com/a/28579635/2288008)
 
-#### Deploy Linux
+#### Enable Multi-OS
 
-```bash
-> git checkout master
-> git tag vA.B.C
-> git push --tags
+* [Travis CI Multi-OS](http://docs.travis-ci.com/user/multi-os/)
+
+```
+os:
+  - linux
+  - osx
 ```
 
-#### Deploy OS X
+#### Deploy (Linux + OS X)
 
 ```bash
-> git checkout osx
 > git tag vA.B.C
 > git push --tags
 ```
