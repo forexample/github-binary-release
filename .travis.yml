@@ -2,7 +2,13 @@ os:
   - linux
   - osx
 
-sudo: required
+sudo: false
+
+addons:
+  apt:
+    packages:
+      - cmake
+      - python3
 
 install:
   - ./install-deps.sh
