@@ -28,7 +28,7 @@ script:
   - build.py --verbose --pack TGZ --config ${CONFIG}
 
 before_deploy:
-  - export FILE_TO_UPLOAD=$(ls _builds/default-Release/Foo-*.tar.gz)
+  - export FILE_TO_UPLOAD=$(ls _builds/*/Foo-*.tar.gz)
 
 deploy:
   provider: releases
