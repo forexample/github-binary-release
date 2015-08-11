@@ -1,12 +1,9 @@
-sudo: false
-
-addons:
-  apt:
-    packages:
-      - cmake
-      - python3
+os:
+  - linux
+  - osx
 
 install:
+  - ./install-deps.sh
   # install cmake toolchains and script
   - POLLY_VERSION="0.7.2"
   - wget "https://github.com/ruslo/polly/archive/v${POLLY_VERSION}.tar.gz"
