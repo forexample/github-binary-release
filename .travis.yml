@@ -11,8 +11,19 @@ addons:
       - python3
 
 env:
-  - CONFIG=Debug
-  - CONFIG=Release
+  - TOOLCHAIN=libcxx CONFIG=Debug
+  - TOOLCHAIN=libcxx CONFIG=Release
+  - TOOLCHAIN=clang-libstdcxx CONFIG=Debug
+  - TOOLCHAIN=clang-libstdcxx CONFIG=Release
+  - TOOLCHAIN=gcc CONFIG=Debug
+  - TOOLCHAIN=gcc CONFIG=Release
+
+matrix:
+  exclude:
+    - os: linux
+      env: TOOLCHAIN=libcxx CONFIG=Debug
+    - os: linux
+      env: TOOLCHAIN=libcxx CONFIG=Release
 
 install:
   - ./install-deps.sh
@@ -25,7 +36,7 @@ install:
   - python3 --version
 
 script:
-  - build.py --verbose --pack TGZ --config ${CONFIG}
+  - build.py --verbose --pack TGZ --config ${CONFIG} --toolchain ${TOOLCHAIN}
 
 before_deploy:
   - export FILE_TO_UPLOAD=$(ls _builds/*/Foo-*.tar.gz)
