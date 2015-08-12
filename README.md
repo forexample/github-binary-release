@@ -1,6 +1,8 @@
-### Uploading release binaries
+# Uploading release binaries
 
 [![Build Status](https://travis-ci.org/forexample/github-binary-release.svg)](https://travis-ci.org/forexample/github-binary-release/builds)
+
+## Travis
 
 #### Create token
 
@@ -31,7 +33,7 @@ before_deploy:
 deploy:
   provider: releases
   api_key:
-    - secure: "encrypted GITHUB OAUTH TOKEN"
+    - secure: "Encrypted GITHUB OAUTH TOKEN"
   file_glob: true
   file: "${FILE_TO_UPLOAD}"
   skip_cleanup: true
@@ -52,9 +54,40 @@ os:
   - osx
 ```
 
-#### Deploy (Linux + OS X)
+## AppVeyor
+
+Create GitHub token with name like "Token for AppVeyor CI deployment" and select `public_repo` (or `repo`). Keep in mind that this token is a **private sensitive** data! See:
+  * [Creating an access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use)
+
+#### Encrypt token
+
+Encrypt your token using form on [appveyor.com](https://ci.appveyor.com/tools/encrypt).
+
+#### Add token
+
+Copy `secure: "..."` string to `appveyor.yml`:
+
+```
+artifacts:
+  - path: _builds\*\Foo-*.tar.gz
+    name: Releases
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: "Encrypted GITHUB OAUTH TOKEN"
+  artifact: /Foo-.*\.tar.gz/
+  draft: false
+  prerelease: false
+  on:
+    appveyor_repo_tag: true
+```
+
+## Deploy
 
 ```bash
 > git tag vA.B.C
 > git push --tags
 ```
+
+Travis will deploy artifacts from Linux and OS X, AppVeyor will deploy artifacts from Windows.

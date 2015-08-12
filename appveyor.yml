@@ -1,0 +1,56 @@
+environment:
+  matrix:
+    - TOOLCHAIN: "vs-12-2013"
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013"
+      CONFIG: Debug
+
+    - TOOLCHAIN: "vs-12-2013-win64"
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-12-2013-win64"
+      CONFIG: Debug
+
+    - TOOLCHAIN: "vs-11-2012"
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-11-2012"
+      CONFIG: Debug
+
+    - TOOLCHAIN: "vs-10-2010"
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-10-2010"
+      CONFIG: Debug
+
+    - TOOLCHAIN: "vs-9-2008"
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-9-2008"
+      CONFIG: Debug
+
+install:
+  - cmd: set POLLY_VERSION="0.7.5"
+  - cmd: appveyor DownloadFile "https://github.com/ruslo/polly/archive/v%POLLY_VERSION%.tar.gz"
+  - cmd: cmake -E tar xf "v%POLLY_VERSION%.tar.gz"
+  - cmd: set PATH=%cd%\polly-%POLLY_VERSION%\bin;%PATH%
+  - cmd: cmake --version
+  - cmd: python --version
+
+build_script:
+  - cmd: build.py --verbose --pack TGZ --config "%CONFIG%" --toolchain "%TOOLCHAIN%"
+
+artifacts:
+  - path: _builds\*\Foo-*.tar.gz
+    name: Releases
+
+deploy:
+  provider: GitHub
+  auth_token:
+    secure: "MlYtJPvxZuQlKMolBQxysZef5AiZapj8gOI8dPpEzkMxeQlQmL6/j/myMT6Zpkne"
+  artifact: /Foo-.*\.tar.gz/
+  draft: false
+  prerelease: false
+  on:
+    appveyor_repo_tag: true
