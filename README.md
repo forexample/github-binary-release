@@ -1,6 +1,8 @@
 # Uploading release binaries
 
-[![Build Status](https://travis-ci.org/forexample/github-binary-release.svg)](https://travis-ci.org/forexample/github-binary-release/builds)
+Linux, OS X: [![Build Status](https://travis-ci.org/forexample/github-binary-release.svg)](https://travis-ci.org/forexample/github-binary-release/builds)
+
+Windows: [![Build status](https://ci.appveyor.com/api/projects/status/ug6pklya81ytwp4b/branch/master?svg=true)](https://ci.appveyor.com/project/ruslo/github-binary-release/branch/master)
 
 ## Travis
 
