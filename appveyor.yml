@@ -1,0 +1,18 @@
+environment:
+  matrix:
+    - TOOLCHAIN: "vs-12-2013"
+      CONFIG: Release
+
+    - TOOLCHAIN: "vs-8-2008"
+      CONFIG: Release
+
+install:
+  - cmd: set POLLY_VERSION="0.7.3"
+  - ps: Start-FileDownload 'https://github.com/ruslo/polly/archive/v%POLLY_VERSION%.tar.gz'
+  - cmd: cmake -E tar xf "v%POLLY_VERSION%.tar.gz"
+  - cmd: set PATH=%cd%\polly-%POLLY_VERSION%\bin;%PATH%
+  - cmd: cmake --version
+  - cmd: python --version
+
+build_script:
+  - build.py --verbose --pack TGZ --config "%CONFIG%" --toolchain "%TOOLCHAIN%"
