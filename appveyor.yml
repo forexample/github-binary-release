@@ -34,12 +34,13 @@ install:
   - cmd: set POLLY_VERSION="0.7.5"
   - cmd: appveyor DownloadFile "https://github.com/ruslo/polly/archive/v%POLLY_VERSION%.tar.gz"
   - cmd: cmake -E tar xf "v%POLLY_VERSION%.tar.gz"
-  - cmd: set PATH=%cd%\polly-%POLLY_VERSION%\bin;%PATH%
+  - cmd: set POLLY_PATH=%cd%\polly-%POLLY_VERSION%\bin
+  - cmd: set PATH=C:\Python34-x64;%PATH%
   - cmd: cmake --version
   - cmd: python --version
 
 build_script:
-  - cmd: build.py --verbose --pack TGZ --config "%CONFIG%" --toolchain "%TOOLCHAIN%"
+  - cmd: python %POLLY_PATH%\build.py --verbose --pack TGZ --config "%CONFIG%" --toolchain "%TOOLCHAIN%"
 
 artifacts:
   - path: _builds\*\Foo-*.tar.gz
