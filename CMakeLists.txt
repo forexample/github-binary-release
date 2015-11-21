@@ -1,11 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
-project(Foo)
-
-add_library(foo foo.cpp)
-add_executable(boo foo.cpp)
-
-install(TARGETS foo DESTINATION lib)
-install(TARGETS boo DESTINATION bin)
+cmake_minimum_required(VERSION 3.0)
 
 string(COMPARE NOTEQUAL "$ENV{TRAVIS_TAG}" "" travis_deploy)
 string(COMPARE EQUAL "$ENV{APPVEYOR_REPO_TAG}" "true" appveyor_deploy)
@@ -18,13 +11,17 @@ else()
   set(version "v0.0.0")
 endif()
 
-string(REGEX REPLACE "^v([0-9]+)\\.[0-9]+\\.[0-9]+$" "\\1" x "${version}")
-string(REGEX REPLACE "^v[0-9]+\\.([0-9]+)\\.[0-9]+$" "\\1" y "${version}")
-string(REGEX REPLACE "^v[0-9]+\\.[0-9]+\\.([0-9]+)$" "\\1" z "${version}")
+string(REGEX REPLACE "^v" "" version "${version}")
 
-set(CPACK_PACKAGE_VERSION_MAJOR ${x})
-set(CPACK_PACKAGE_VERSION_MINOR ${y})
-set(CPACK_PACKAGE_VERSION_PATCH ${z})
+project(Foo VERSION ${version})
+
+add_library(foo foo.cpp)
+add_executable(boo foo.cpp)
+
+install(TARGETS foo DESTINATION lib)
+install(TARGETS boo DESTINATION bin)
+
+set(CPACK_PACKAGE_VERSION ${PROJECT_VERSION})
 
 if(travis_deploy OR appveyor_deploy)
   string(COMPARE EQUAL "$ENV{CONFIG}" "Debug" debug_build)
