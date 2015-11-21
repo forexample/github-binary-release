@@ -19,6 +19,7 @@ Create GitHub token with name like "Token for Travis CI deployment" and select `
 > sudo gem install travis
 > which travis
 /usr/bin/travis
+> sudo travis login --pro # required for a pro Travis CI account
 > sudo travis encrypt -r username/reponame abc..YOUR.TOKEN.HERE...123
 
   secure: "...."
