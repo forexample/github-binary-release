@@ -40,6 +40,7 @@ script:
   - build.py --verbose --pack TGZ --config ${CONFIG} --toolchain ${TOOLCHAIN}
 
 before_deploy:
+  - gem install mime-types -v 2.6.2 # workaround for https://github.com/travis-ci/travis-ci/issues/5145
   - export FILE_TO_UPLOAD=$(ls _builds/*/Foo-*.tar.gz)
 
 deploy:
