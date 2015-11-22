@@ -86,6 +86,15 @@ deploy:
     appveyor_repo_tag: true
 ```
 
+## Submodules
+
+If your project uses submodules, you will have to tell Appveyor to initialize them, as described [here](http://www.appveyor.com/docs/how-to/private-git-sub-modules).  This can be done in the `install` section with the following git command:
+
+```
+install:
+   - cmd: git submodule update --init --recursive
+```
+
 ## Deploy
 
 ```bash
