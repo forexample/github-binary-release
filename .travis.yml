@@ -27,7 +27,7 @@ matrix:
 
 install:
   - ./install-deps.sh
-  - export PATH="`pwd`/cmake-3.4.0-Linux-x86_64/bin:${PATH}"
+  - export PATH="`pwd`/cmake-3.4.0-Linux-x86_64/bin:${PATH}" # directory doesn't exist for OSX
   # install cmake toolchains and script
   - POLLY_VERSION="0.7.3"
   - wget "https://github.com/ruslo/polly/archive/v${POLLY_VERSION}.tar.gz"
